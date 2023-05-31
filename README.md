@@ -7,7 +7,7 @@ In order to run the app, you will need to Git, Node and NPM:
 #### Local environment setup
 
 1. Install [Git](https://git-scm.com/) if you don't have it installed.
-1. Install [the latest LTS version of NodeJS](https://nodejs.org/en/) if you don't have it installed.
+1. Install [NodeJS](https://nodejs.org/en/) if you don't have it installed.
 1. NPM should be installed (after installing NodeJS) 
 
 3. Clone this repository to your local machine by:
@@ -30,13 +30,13 @@ In order to run the app, you will need to Git, Node and NPM:
 
 ### Running the tests:
  
- To run the tests you have two options:
+To run the tests you have two options:
  
 #### Newman
  
- You can run the tests from the command line. This option uses the Newman runner to execute the tests with each request and its tests displayed in the terminal with a summary of the test run at the end.
+You can run the tests from the command line. This option uses the Newman runner to execute the tests with each request and its tests displayed in the terminal with a summary of the test run at the end.
 
- To run the tests:
+To run the tests:
 1. The application must be running
 2. Open the Terminal
 3. Run `cd talon-one-qa-task` to open the project folder
@@ -47,7 +47,26 @@ In order to run the app, you will need to Git, Node and NPM:
 #### Postman
  You can run the tests with the Postman app, using the collection runner or manually sending each request.
  
-1. Download and install [Postman](https://www.postman.com/downloads/) if you don't have it installed.
-2. Launch Postman
-3. Import the collection file: `regression-tests.postman_collection.json`
-4. Import the environment file: `local.postman_environment.json`
+- Download and install [Postman](https://www.postman.com/downloads/) if you don't have it installed. 
+- Launch Postman 
+- Click the Import button at the top left of the app: 
+  <img width="270" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/d3352e97-f33c-4459-9ea4-66c7927cd2f5"> 
+
+- Import the `regression-tests.postman_collection.json` file 
+- Import the `local.postman_environment.json` file 
+
+- Select the `Local` environment on the top right of the app: 
+  <img width="270" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/341a6f8e-e37c-475e-9b11-e4e9abd6f19e"> 
+
+- Open a run from the collection sub-menu: 
+  <img width="270" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/0ba88f80-1b3c-420a-996d-3db12502b69b"> 
+
+- Click on the Run Regression Tests button:
+  <img width="1854" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/e1e80a30-3714-4207-8dd0-26c090ae5671">
+  
+- Sample Result:
+
+<img width="799" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/7a3245e9-8448-4cc6-888d-2d88c7f94f93">
+
+
+
