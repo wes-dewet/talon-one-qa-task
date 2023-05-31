@@ -49,5 +49,5 @@ In order to run the app, you will need to Git, Node and NPM:
  
 1. Download and install [Postman](https://www.postman.com/downloads/) if you don't have it installed.
 2. Launch Postman
-3. Import the collection file 
-4. Import the environment file
+3. Import the collection file: `regression-tests.postman_collection.json`
+4. Import the environment file: `local.postman_environment.json`
