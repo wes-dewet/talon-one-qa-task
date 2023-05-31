@@ -27,6 +27,7 @@ In order to run the app, you will need to Git, Node and NPM:
 1. Run `cd talon-one-qa-task` to open the project folder.
 1. Run `npm i` to install the project dependencies.
 1. Run `npm start` to start the application on http://localhost:3000.
+1. If at any point the initial test data needs to be seeded again, run `npm run seeds`.
 
 ### Running the tests:
  
