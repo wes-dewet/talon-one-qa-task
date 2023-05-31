@@ -50,19 +50,23 @@ To run the tests:
 - Download and install [Postman](https://www.postman.com/downloads/) if you don't have it installed. 
 - Launch Postman 
 - Click the Import button at the top left of the app: 
-  <img width="270" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/d3352e97-f33c-4459-9ea4-66c7927cd2f5"> 
+
+<img width="270" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/d3352e97-f33c-4459-9ea4-66c7927cd2f5"> 
 
 - Import the `regression-tests.postman_collection.json` file 
 - Import the `local.postman_environment.json` file 
 
 - Select the `Local` environment on the top right of the app: 
-  <img width="270" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/341a6f8e-e37c-475e-9b11-e4e9abd6f19e"> 
+
+<img width="270" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/341a6f8e-e37c-475e-9b11-e4e9abd6f19e"> 
 
 - Open a run from the collection sub-menu: 
-  <img width="270" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/0ba88f80-1b3c-420a-996d-3db12502b69b"> 
+
+<img width="270" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/0ba88f80-1b3c-420a-996d-3db12502b69b"> 
 
 - Click on the Run Regression Tests button:
-  <img width="1854" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/e1e80a30-3714-4207-8dd0-26c090ae5671">
+
+<img width="1854" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/e1e80a30-3714-4207-8dd0-26c090ae5671">
   
 - Sample Result:
 
