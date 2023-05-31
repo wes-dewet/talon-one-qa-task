@@ -1,0 +1,620 @@
+{
+	"info": {
+		"_postman_id": "f629b979-45ff-4d1e-85cf-84de7c5596f0",
+		"name": "Regression Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "620462"
+	},
+	"item": [
+		{
+			"name": "Create Comments",
+			"item": [
+				{
+					"name": "Create a Comment Successfully",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"pm.environment.set(\"commentId\", response[\"id\"]);",
+									"",
+									"pm.test(\"Status code is 201 Created\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"const schema = {",
+									"  \"type\": \"object\",",
+									"  \"additionalProperties\": false,",
+									"  \"properties\": {",
+									"    \"postId\": {",
+									"      \"type\": \"integer\"",
+									"    },",
+									"    \"userId\": {",
+									"      \"type\": \"integer\"",
+									"    },",
+									"    \"name\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"email\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"body\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"id\": {",
+									"      \"type\": \"integer\"",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"body\",",
+									"    \"email\",",
+									"    \"id\",",
+									"    \"name\",",
+									"    \"postId\",",
+									"    \"userId\"",
+									"  ]",
+									"}",
+									"",
+									"",
+									"pm.test(\"Create comment response matches expected JSON schema\", function () {",
+									"\tpm.expect(pm.response).to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"postId\": 2,\n    \"userId\": 3,\n    \"name\": \"Create comment test data\",\n    \"email\": \"wesley@mail.com\",\n    \"body\": \"Test body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Comment with Duplicate Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500 with duplicate Id error\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{commentId}},\n    \"postId\": 2,\n    \"userId\": 3,\n    \"name\": \"Create comment test data\",\n    \"email\": \"wesley@mail.com\",\n    \"body\": \"Test body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a Comment without JSON body",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400 Bad Request\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BadRequest",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Edit Comments",
+			"item": [
+				{
+					"name": "Edit a Comment Successfully",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const schema = {",
+									"  \"type\": \"object\",",
+									"  \"additionalProperties\": false,",
+									"  \"properties\": {",
+									"    \"postId\": {",
+									"      \"type\": \"integer\"",
+									"    },",
+									"    \"userId\": {",
+									"      \"type\": \"integer\"",
+									"    },",
+									"    \"name\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"email\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"body\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"id\": {",
+									"      \"type\": \"integer\"",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"body\",",
+									"    \"email\",",
+									"    \"id\",",
+									"    \"name\",",
+									"    \"postId\",",
+									"    \"userId\"",
+									"  ]",
+									"}",
+									"",
+									"",
+									"pm.test(\"Create comment response matches expected JSON schema\", function () {",
+									"\tpm.expect(pm.response).to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n      \"postId\": 1,\n      \"userId\": 3,\n      \"name\": \"Edit comment test data\",\n      \"email\": \"wesley@mail.com\",\n      \"body\": \"laudantium enim quasi est quidem magnam voluptate ipsam eos\\ntempora quo necessitatibus\\ndolor quam autem quasi\\nreiciendis et nam sapiente accusantium\"\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/comments/1",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a Comment with invalid ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 Not Found\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"postId\": 2,\n    \"userId\": 3,\n    \"name\": \"Edit comment test data\",\n    \"email\": \"wesley@mail.com\",\n    \"body\": \"Test body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/comments/0",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments",
+								"0"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a Comment without ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 Not Found\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"postId\": 2,\n    \"userId\": 3,\n    \"name\": \"Edit comment test data\",\n    \"email\": \"wesley@mail.com\",\n    \"body\": \"Test body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete Comments",
+			"item": [
+				{
+					"name": "Delete a Comment Successfully",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/comments/{{commentId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments",
+								"{{commentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Comment without ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 Not Found\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Comment with invalid ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 Not Found\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"postId\": 2,\n    \"userId\": 3,\n    \"name\": \"Wesley De Wet\",\n    \"email\": \"wesley@mail.com\",\n    \"body\": \"Test body\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/comments/0",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Retrieve Comments",
+			"item": [
+				{
+					"name": "Retrieve All Comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json()[0];",
+									"pm.environment.set(\"commentId\", response[\"id\"]);",
+									"",
+									"pm.test(\"Status code is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const schema ={",
+									"  \"type\": \"array\",",
+									"  \"items\": {",
+									"    \"type\": \"object\",",
+									"    \"properties\": {",
+									"      \"postId\": {",
+									"        \"type\": \"integer\"",
+									"      },",
+									"      \"userId\": {",
+									"        \"type\": \"integer\"",
+									"      },",
+									"      \"name\": {",
+									"        \"type\": \"string\"",
+									"      },",
+									"      \"email\": {",
+									"        \"type\": \"string\",",
+									"        \"format\": \"email\"",
+									"      },",
+									"      \"body\": {",
+									"        \"type\": \"string\"",
+									"      },",
+									"      \"id\": {",
+									"        \"type\": \"integer\"",
+									"      }",
+									"    },",
+									"    \"required\": [\"postId\", \"name\", \"email\", \"body\"],",
+									"    \"additionalProperties\": false",
+									"  }",
+									"}",
+									"",
+									"pm.test(\"Get all comments response matches expected JSON schema\", function () {",
+									"\tpm.expect(pm.response).to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/comments",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Comment by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200 OK\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"const schema = {",
+									"  \"type\": \"object\",",
+									"  \"additionalProperties\": false,",
+									"  \"properties\": {",
+									"    \"postId\": {",
+									"      \"type\": \"integer\"",
+									"    },",
+									"    \"userId\": {",
+									"      \"type\": \"integer\"",
+									"    },",
+									"    \"name\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"email\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"body\": {",
+									"      \"type\": \"string\"",
+									"    },",
+									"    \"id\": {",
+									"      \"type\": \"integer\"",
+									"    }",
+									"  },",
+									"  \"required\": [",
+									"    \"body\",",
+									"    \"email\",",
+									"    \"id\",",
+									"    \"name\",",
+									"    \"postId\",",
+									"    \"userId\"",
+									"  ]",
+									"}",
+									"",
+									"",
+									"pm.test(\"Create comment response matches expected JSON schema\", function () {",
+									"\tpm.expect(pm.response).to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/comments/{{commentId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments",
+								"{{commentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retrieve Comment with invalid ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404 Not Found\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/comments/0",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"comments",
+								"0"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
