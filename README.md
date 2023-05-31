@@ -74,4 +74,17 @@ To run the tests:
 <img width="799" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/7a3245e9-8448-4cc6-888d-2d88c7f94f93">
 
 
+#### What did you choose to test, and why?
+I chose to test the comment functionality and simulate what a user would do. Create, edit, delete and view a comment. I added tests that would ensure the correct response code is returned and that the response matched an expected schema. I also aded some negative tests where I expected an error to be returned e.g. trying to create a comment with a duplicate unique ID.
+
+#### How else might you have done things?
+Instead of having seed data already in a db.json file, I would have liked to seed the test data using a script that would create the data needed for the tests to run successfully.
+
+#### How might you expand on these tests in future?
+Adding some tests to cover the CRUD of posts and users. 
+
+#### How did you overcome any technical challenges you encountered?
+The comments can be created independent of any Posts or Users existing, which made the testing a bit limited. For example I cannot test that a Post needs to be created/valid for a comment to be added because there is no validation on the application to enforce that rule.
+
+There were not any other challenges, I think the solution to the task is pretty straight forward.
 
