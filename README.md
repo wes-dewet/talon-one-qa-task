@@ -30,9 +30,9 @@ In order to run the app, you will need to Git, Node and NPM:
 
 ### Running the tests:
  
-To run the tests you have two options:
+To run the tests you have two options **Newman** or **Postman**:
  
-#### Newman
+### Newman
  
 You can run the tests from the command line. This option uses the Newman runner to execute the tests with each request and its tests displayed in the terminal with a summary of the test run at the end.
 
@@ -44,7 +44,7 @@ To run the tests:
 5. Sample output: 
   <img width="400" src="https://github.com/wkdewet/talon-one-qa-task/assets/11028293/039c8fdb-bfe6-4ec7-8c25-3f0a82507edb">
 
-#### Postman
+### Postman
  You can run the tests with the Postman app, using the collection runner or manually sending each request.
  
 - Download and install [Postman](https://www.postman.com/downloads/) if you don't have it installed. 
